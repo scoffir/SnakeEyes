@@ -1,29 +1,30 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace SnakeEyesGame.Models
 {
-
+    [JsonObject(MemberSerialization.OptIn)]
     public class SnakeEyes
     {
         #region Fields
-        private readonly Dice _eye1;
-        private readonly Dice _eye2;
+        private readonly Dice _dice1;
+        private readonly Dice _dice2;
         #endregion
 
         #region Properties
 
         public int Total { get; private set; }
 
-        public int Eye1 => _eye1.Pips;
+        public int Eye1 => _dice1.Pips;
 
-        public int Eye2 => _eye2.Pips;
+        public int Eye2 => _dice2.Pips;
         #endregion
 
         #region Constructor
         public SnakeEyes()
         {
-            _eye1 = new Dice();
-            _eye2 = new Dice();
+            _dice1 = new Dice();
+            _dice2 = new Dice();
             Total = 0;
         }
         #endregion
@@ -34,7 +35,12 @@ namespace SnakeEyesGame.Models
         /// </summary>
         public void Play()
         {
-            throw new NotImplementedException();
+            _dice1.Roll();
+            _dice2.Roll();
+            if (Eye1 == 1 && Eye2 == 1)
+                Total = 0;
+            else
+                Total += Eye1 + Eye2;
         }
         #endregion
     }

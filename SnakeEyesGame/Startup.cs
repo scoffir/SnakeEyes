@@ -12,6 +12,7 @@ namespace SnakeEyesGame
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -24,10 +25,13 @@ namespace SnakeEyesGame
 
             app.UseStaticFiles();
             app.UseStatusCodePages();
-            app.UseRouting();         
+            app.UseRouting();
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapDefaultControllerRoute();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=home}/{action=index}/{id?}");
             });
         }
     }

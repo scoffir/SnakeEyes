@@ -1,0 +1,26 @@
+﻿@model SnakeEyesGame.Models.SnakeEyes
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>SnakeEyes, have fun!</h1>
+    <p>
+        <span class="snakeEye">@Model.Eye1</span>
+        <span class="snakeEye">@Model.Eye2</span>
+    </p>
+    <p>Your total = @Model.Total</p>
+    <form asp-controller="Home" asp-action="Play">
+        <input type="submit" value="Play" />
+    </form>
+</body>
+</html>
+
